@@ -2,6 +2,7 @@ import numpy as np
 import cv2 as cv
 from utils import IMGSorter
 import os
+import OpenEXR
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
 '''Method to normalize depth mats'''
@@ -45,6 +46,8 @@ if __name__ == '__main__':
     #         dmap_norm = convert_dmap(dmap)
     #         # write dmap to created directory
     #         cv.imwrite('{}/{}.exr'.format(save_path, get_file_id),  dmap_norm)
-            
-    dmap = cv.imread('database/y-axis_FL15_r20/dmaps/20_0_0_0.exr', cv.IMREAD_UNCHANGED)
+    # print(cv.getBuildInformation())
+    dmap = cv.imread('30_90_15_0.exr', cv.IMREAD_UNCHANGED)
+    dmap1 = OpenEXR.InputFile('y-axis_FL15_r15/dmaps/15_0_0_0.exr')
+    header = dmap1.header()
     print(dmap)
