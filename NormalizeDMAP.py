@@ -1,8 +1,11 @@
+#!usr/bin/env python3
+
 import numpy as np
 import cv2 as cv
 from utils import IMGSorter
 import os
 import OpenEXR
+import sys
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
 '''Method to normalize depth mats'''
@@ -23,31 +26,27 @@ def convert_dmap(kf_depth):
 
 if __name__ == '__main__':
 
-    # # ranges of the camera
-    # FL = 15
-    # ranges = [20,30,40] 
+    # ranges of the camera
+    FL = 15
+    ranges = [15] 
 
-    # for rn in ranges:
-    #     # directory
-    #     dmap_folder = f'database/y-axis_FL{FL}_r{rn}/dmaps/'
-    #     dmap_paths_sorted = IMGSorter(dmap_folder).get_sorted_image_paths(format='.exr')
+    for rn in ranges:
+        # directory
+        dmap_folder = f'database/y-axis_FL{FL}_r{rn}/dmaps/'
+        dmap_paths_sorted = IMGSorter(dmap_folder).get_sorted_image_paths(format='.exr')
 
-    #     for path in dmap_paths_sorted:
-    #         # get dmap
-    #         get_file_id = os.path.splitext(os.path.basename(path))[0]
-    #         print(path)
+        for path in dmap_paths_sorted:
+            # get dmap
+            get_file_id = os.path.splitext(os.path.basename(path))[0]
+            print(path)
 
-    #         dmap = cv.imread(path, cv.IMREAD_UNCHANGED)
-    #         print(dmap)
-    #         # make dirs to save normalized dmap
-    #         save_path = f'database/y-axis_FL{FL}_r{rn}/dmaps_norm/'
-    #         os.makedirs(save_path, exist_ok=True)
-    #         # normalize dmap
-    #         dmap_norm = convert_dmap(dmap)
-    #         # write dmap to created directory
-    #         cv.imwrite('{}/{}.exr'.format(save_path, get_file_id),  dmap_norm)
-    # print(cv.getBuildInformation())
-    dmap = cv.imread('30_90_15_0.exr', cv.IMREAD_UNCHANGED)
-    dmap1 = OpenEXR.InputFile('y-axis_FL15_r15/dmaps/15_0_0_0.exr')
-    header = dmap1.header()
-    print(dmap)
+            dmap = cv.imread(path, cv.IMREAD_UNCHANGED)
+            print(dmap)
+            # make dirs to save normalized dmap
+            save_path = f'database/y-axis_FL{FL}_r{rn}/dmaps_norm/'
+            os.makedirs(save_path, exist_ok=True)
+            # normalize dmap
+            dmap_norm = convert_dmap(dmap)
+            # write dmap to created directory
+            cv.imwrite('{}/{}.exr'.format(save_path, get_file_id),  dmap_norm)
+
