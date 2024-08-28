@@ -1,13 +1,13 @@
 #!./.venv/bin/python
-
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import numpy as np
 import cv2 as cv
 from utils import IMGSorter
-import os
-import OpenEXR
-import sys
 import time
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
+
 
 '''Method to normalize depth mats'''
 '''------------------------------------------------------------------------------------------------------'''
@@ -27,6 +27,7 @@ def convert_dmap(kf_depth):
 
 if __name__ == '__main__':
 
+    
     # ranges of the camera
     FL = sys.argv[2]
     ranges = sys.argv[3:]
