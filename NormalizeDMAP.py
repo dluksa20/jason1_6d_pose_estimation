@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!./.venv/bin/python
 
 import numpy as np
 import cv2 as cv
@@ -6,6 +6,7 @@ from utils import IMGSorter
 import os
 import OpenEXR
 import sys
+import time
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
 '''Method to normalize depth mats'''
@@ -28,7 +29,7 @@ if __name__ == '__main__':
 
     # ranges of the camera
     FL = 15
-    ranges = [15] 
+    ranges = [10, 20,30,40,50] 
 
     for rn in ranges:
         # directory
@@ -36,12 +37,10 @@ if __name__ == '__main__':
         dmap_paths_sorted = IMGSorter(dmap_folder).get_sorted_image_paths(format='.exr')
 
         for path in dmap_paths_sorted:
+            start_timer = time.time()
             # get dmap
             get_file_id = os.path.splitext(os.path.basename(path))[0]
-            print(path)
-
             dmap = cv.imread(path, cv.IMREAD_UNCHANGED)
-            print(dmap)
             # make dirs to save normalized dmap
             save_path = f'database/y-axis_FL{FL}_r{rn}/dmaps_norm/'
             os.makedirs(save_path, exist_ok=True)
@@ -49,4 +48,7 @@ if __name__ == '__main__':
             dmap_norm = convert_dmap(dmap)
             # write dmap to created directory
             cv.imwrite('{}/{}.exr'.format(save_path, get_file_id),  dmap_norm)
+            end_time = time.time()
+
+            print(f'{'>'*80}\nSucces!\nNormalized depth map saved to: {save_path}{get_file_id}.exr\nTime elapsed: {end_time-start_timer:.2f}s')
 
