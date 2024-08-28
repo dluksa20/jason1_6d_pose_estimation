@@ -28,12 +28,12 @@ def convert_dmap(kf_depth):
 if __name__ == '__main__':
 
     # ranges of the camera
-    FL = 15
-    ranges = [10, 20,30,40,50] 
+    FL = sys.argv[2]
+    ranges = sys.argv[3:]
 
     for rn in ranges:
         # directory
-        dmap_folder = f'database/y-axis_FL{FL}_r{rn}/dmaps/'
+        dmap_folder = f'{sys.argv[1]}/y-axis_FL{FL}_r{rn}/dmaps/'
         dmap_paths_sorted = IMGSorter(dmap_folder).get_sorted_image_paths(format='.exr')
 
         for path in dmap_paths_sorted:
@@ -42,7 +42,7 @@ if __name__ == '__main__':
             get_file_id = os.path.splitext(os.path.basename(path))[0]
             dmap = cv.imread(path, cv.IMREAD_UNCHANGED)
             # make dirs to save normalized dmap
-            save_path = f'database/y-axis_FL{FL}_r{rn}/dmaps_norm/'
+            save_path = f'{sys.argv[1]}/y-axis_FL{FL}_r{rn}/dmaps_norm/'
             os.makedirs(save_path, exist_ok=True)
             # normalize dmap
             dmap_norm = convert_dmap(dmap)
