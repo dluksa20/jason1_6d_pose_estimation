@@ -11,7 +11,7 @@ os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 '''Method to normalize depth mats'''
 '''------------------------------------------------------------------------------------------------------
 Run the script in the terminal:
-    ./scripts/NormalizeDMAP.py database 15 10 20 30 40 50
+    ./scripts/normalizeDMAP.py database 15 10 20 30 40 50
     database - folder/directory where depth maps residing
     agrv1(15) - camera focal length
     argv2(10-50) - select space separated ranges
