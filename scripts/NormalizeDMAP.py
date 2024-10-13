@@ -58,5 +58,6 @@ if __name__ == '__main__':
             cv.imwrite('{}/{}.exr'.format(save_path, get_file_id),  dmap_norm)
             end_time = time.time()
 
+            # output 
             print(f'{'>'*80}\nSucces!\nNormalized depth map saved to: {save_path}{get_file_id}.exr\nTime elapsed: {end_time-start_timer:.2f}s')
 
