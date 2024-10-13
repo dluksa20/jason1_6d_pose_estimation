@@ -1,4 +1,4 @@
-#!./.venv/bin/python
+#!./venv/bin/python
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -8,9 +8,16 @@ from utils import IMGSorter
 import time
 os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 
-
 '''Method to normalize depth mats'''
-'''------------------------------------------------------------------------------------------------------'''
+'''------------------------------------------------------------------------------------------------------
+Run the script in the terminal:
+    ./scripts/NormalizeDMAP.py database 15 10 20 30 40 50
+    database - folder/directory where depth maps residing
+    agrv1(15) - camera focal length
+    argv2(10-50) - select space separated ranges
+'''
+
+
 def convert_dmap(kf_depth):
     kf_depth = kf_depth[:,:,0]
     dmap_min_val,dmap_max_val,dmap_min_indx,dmap_max_indx=cv.minMaxLoc(kf_depth)
