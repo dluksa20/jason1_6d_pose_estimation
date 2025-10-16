@@ -70,7 +70,7 @@ python main.py
 | `main.py` | The entry point for the application. It handles image loading, calling the pose estimation functions, and visualization. |
 | `PosePnP.py` | Contains the **core function** for computing the 6D pose using the PnP algorithm, including input preparation and output formatting. |
 | `requirements.txt` | Lists all necessary Python libraries for the project. |
-| `database/` | Intended to store the **3D model of JASON1** (e.g., in `.ply` or `.obj` format), **camera intrinsic parameters**, and any ground-truth data. |
+| `database/` | for storing database images 3D points, **camera intrinsic parameters**, and ground-truth data. |
 | `scripts/` | Contains supplementary scripts, potentially for data generation, pre-processing, or evaluation. |
 
 Export to Sheets
