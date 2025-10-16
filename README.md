@@ -1,6 +1,6 @@
-# Jasson-1 Satellite 6D Pose Estimation
+# Jason-1 Satellite 6D Pose Estimation
 
-**6-Degrees-of-Freedom (6D) object pose estimation, specifically targeting the JASON1 object model.**
+**6-Degrees-of-Freedom (6D) object pose estimation**
 
 This repository implements a computer vision pipeline to accurately determine the **3D position** and **3D orientation** of the JASON1 satellite from 2D image data. The core of the solution relies on the classic **Perspective-n-Point (PnP)** algorithm and **Blender** generated synthetic database images.
 
